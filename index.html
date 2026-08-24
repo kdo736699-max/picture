@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<title>制作你的专属图片</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f2eb;color:#20201e;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:560px;margin:0 auto;min-height:100vh;padding:56px 22px 40px}
+.card{background:#fffdf8;border:1px solid #ded9cf;border-radius:22px;padding:30px 22px;box-shadow:0 10px 35px rgba(0,0,0,.055)}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:#777268;margin-bottom:12px}
+h1{font-size:30px;line-height:1.25;margin:0 0 12px;font-weight:750}
+.lead{font-size:15px;line-height:1.75;color:#666158;margin:0 0 28px}
+.steps{padding:18px 0;border-top:1px solid #e8e3da;border-bottom:1px solid #e8e3da;margin-bottom:24px}
+.step{display:flex;gap:12px;align-items:flex-start;margin:11px 0;font-size:15px;line-height:1.55}
+.num{width:23px;height:23px;flex:none;border:1px solid #aaa399;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+button,a.btn{width:100%;border:0;border-radius:14px;padding:16px 18px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;display:block}
+.primary{background:#20201e;color:#fff}
+.secondary{margin-top:12px;background:#ebe6dc;color:#20201e}
+.status{height:24px;text-align:center;margin-top:12px;font-size:13px;color:#58705a}
+.note{font-size:12px;color:#918b80;line-height:1.6;margin:24px 4px 0;text-align:center}
+.fallback{display:none;margin-top:16px}
+textarea{width:100%;height:120px;border:1px solid #d7d1c6;border-radius:12px;padding:12px;font-size:12px;line-height:1.5;background:#fff}
+.small{font-size:12px;color:#777268;margin:8px 0}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="card">
+<div class="eyebrow">PHOTO → PAPER</div>
+<h1>制作你的专属图片</h1>
+<p class="lead">把你喜欢的照片，变成「原图 × 极简纸感手绘」9:16 上下对照图。</p>
+
+<div class="steps">
+<div class="step"><span class="num">1</span><span>点击下方按钮，一键复制制作指令</span></div>
+<div class="step"><span class="num">2</span><span>打开豆包，上传你想制作的原始照片</span></div>
+<div class="step"><span class="num">3</span><span>粘贴刚刚复制的指令并发送</span></div>
+</div>
+
+<button class="primary" id="copyBtn">一键复制制作指令</button>
+<div class="status" id="status"></div>
+
+<a class="btn secondary" href="https://www.doubao.com/chat/" target="_blank" rel="noopener noreferrer">打开豆包制作</a>
+
+<div class="fallback" id="fallback">
+<p class="small">当前浏览器限制了自动复制。长按下方文字并选择“全选 → 复制”：</p>
+<textarea id="promptText" readonly></textarea>
+</div>
+
+<p class="note">本页面不会上传或保存你的照片。图片生成在你打开的 AI 服务中完成。</p>
+</section>
+</main>
+
+<script>
+const PROMPT = "【最终版式要求】\n请根据我提供的照片或主题，最终制作一张 9:16 竖版上下对照图。整个画布从正中间水平分为上下两个区域，两部分高度严格一致，各占最终画面高度的 50%，形成 1:1 的篇幅关系。\n\n上半部分：保留用户上传的原始照片，尽可能保持原图本身的主体、构图、色彩、光线、透视和摄影质感，不要将上半部分重新绘制、插画化或风格化。若原图比例与上半部分区域不一致，可以在不破坏主体的前提下合理裁切，禁止拉伸、压扁或改变主体比例。\n\n下半部分：根据同一张原始照片，严格按照以下风格要求创作新的极简纸感手绘插画。下方插画应与上方原图形成清晰对应，保留原图最核心的主体、动作、轮廓、空间关系与视觉特征，但允许按照以下规则进行艺术提炼和删减。\n\n【插画创作要求】\n\n你是一名擅长**极简插画、纸张媒介、丙烯色块绘画与视觉提炼**的封面插画师。请根据我提供的**照片或主题**，创作一张**极简纸感手绘封面**。\n\n你的任务不是写实复刻照片，也不是把照片简单变成线稿，而是先识别画面中最有辨识度的主体、轮廓、动作、空间关系与视觉特征，再进行**高度提炼与删减**，仅保留最关键的视觉信息，用**简洁线条 + 明显色块**重新表达。\n\n## 整体风格\n\n整体风格应为：\n\n**粗糙白纸 + 极简手绘线条 + 明显丙烯色块 + 大量留白**\n\n画面必须带有清晰可见的**纸张纹理**，像画在一张略粗糙的白色纸面上。\n\n同时，主体的上色要有一种：\n\n**小幅丙烯插画 / 手工平涂 / 稍带颗粒感的色块绘画**\n\n的感觉。\n\n不是彩铅。\n不是蜡笔。\n不是纯线稿勾勒。\n不是只有一点点颜色轻蹭上去。\n\n而是要有**明确、完整、醒目的色块**，让视觉中心更成立。\n\n## 主体处理\n\n根据照片提炼主体最有辨识度的部分，不要完整照搬所有细节。复杂场景必须大胆简化。\n\n建筑只保留最典型的：\n- 外轮廓\n- 主要结构关系\n- 关键窗户或门洞\n- 最具识别度的造型特征\n\n人物只保留：\n- 姿态\n- 动作\n- 发型\n- 衣服轮廓\n- 少量必要特征\n\n物体只保留：\n- 主要外形\n- 功能结构\n- 最重要的视觉特征\n\n宁可少画，不要多画。不要追求“缩小版写实复刻”。\n\n要像从真实画面中提炼出一个**最值得被记住的符号化瞬间**。\n\n## 线条要求\n\n线条要细、轻、简洁，带一点手绘的不稳定感。可以有轻微断续、歪斜、不工整感，但不要太乱。\n\n不要工程制图感。\n不要过度精细。\n不要把所有边都封闭得特别完整。\n\n线条的作用是：\n\n**辅助结构识别**\n\n而不是成为画面的主要视觉主体。\n\n真正的重点应该是：\n\n**简洁轮廓 + 鲜明色块。**\n\n## 上色方式\n\n上色必须采用**明显的色块表达**。\n\n色块应该具有以下特点：\n- 有清晰的形体归纳\n- 看起来像手工涂绘的丙烯平涂\n- 有适度覆盖感\n- 有一定厚度感，但不能过度厚涂\n- 能保留一点纸张颗粒和手工痕迹\n- 不需要非常均匀，可以略带手绘的不平整边缘\n\n重点是：\n\n**不是靠线条完成画面，而是靠少量但明确的色块建立主体。**\n\n可以理解为：\n\n**线条负责“提示”，色块负责“成立”。**\n\n## 色彩要求\n\n整张插画控制在**不超过 4 种主要颜色**。颜色应优先从原始照片中提炼，并保留原照片最有辨识度、最有视觉吸引力的色彩关系。\n\n色彩不能过淡、过灰或只有少量轻微着色。即使整体保持极简和大量留白，主体仍必须具有**鲜明、完整、有存在感的丙烯色块**。\n\n不要因为“极简”“纸感”或“大量留白”而削弱主体色彩。主体色块应有足够的覆盖面积、饱和度和视觉重量，使画面的视觉中心明确成立，同时保持整体配色克制、干净。\n\n【最终输出要求】\n\n最终只输出一张完整的 9:16 竖版成品：\n- 上半部分严格占 50%：用户上传的原始照片。\n- 下半部分严格占 50%：按照上述要求生成的极简纸感手绘插画。\n- 上下两部分等高，篇幅比例严格为 1:1。\n- 原图在上，插画在下。\n- 下方插画必须与上方照片表现同一个场景和核心主体。\n- 不要因为上下拼接而降低插画部分的色彩强度、丙烯色块覆盖感或视觉中心。\n- 不添加标题、文字、水印、Logo、贴纸、相框、粗边框或其他模板化装饰。\n- 不凭空增加原图中不存在的主体。\n- 最终只输出合成后的一张图片，不要分别输出两张图。";
+const btn = document.getElementById('copyBtn');
+const status = document.getElementById('status');
+const fallback = document.getElementById('fallback');
+const promptText = document.getElementById('promptText');
+promptText.value = PROMPT;
+
+function legacyCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly','');
+  ta.style.position='fixed';
+  ta.style.opacity='0';
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0, ta.value.length);
+  const ok = document.execCommand('copy');
+  document.body.removeChild(ta);
+  return ok;
+}
+
+btn.addEventListener('click', async () => {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(PROMPT);
+    } else if (!legacyCopy(PROMPT)) {
+      throw new Error('copy failed');
+    }
+    status.textContent = '✓ 已复制，现在打开豆包上传照片即可';
+    btn.textContent = '已复制 ✓';
+    setTimeout(() => btn.textContent = '再次复制制作指令', 1800);
+  } catch (e) {
+    fallback.style.display = 'block';
+    promptText.focus();
+    promptText.select();
+    status.textContent = '请长按下方提示词手动复制';
+  }
+});
+</script>
+</body>
+</html>
