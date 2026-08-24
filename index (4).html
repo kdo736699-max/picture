@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>制作你的专属图片</title>
+
+<!-- 51.LA V6 -->
+<script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"3Qysm1iMYmErtIXB",ck:"3Qysm1iMYmErtIXB"})</script>
+
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#f4f1e9;color:#20201e}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.page{max-width:560px;margin:0 auto;padding:48px 20px 36px}
+.card{background:#fffdf8;border:1px solid #ddd7cb;border-radius:22px;padding:30px 22px;box-shadow:0 12px 36px rgba(0,0,0,.055)}
+.kicker{font-size:12px;letter-spacing:.18em;color:#8b8479;margin-bottom:14px}
+h1{margin:0;font-size:30px;line-height:1.25}
+.desc{margin:12px 0 26px;color:#686259;font-size:15px;line-height:1.75}
+.steps{border-top:1px solid #e7e1d6;border-bottom:1px solid #e7e1d6;padding:12px 0;margin-bottom:24px}
+.step{display:flex;gap:12px;margin:11px 0;font-size:15px;line-height:1.55}
+.n{width:24px;height:24px;flex:0 0 24px;border:1px solid #aaa398;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px}
+button,a.btn{display:block;width:100%;border-radius:14px;padding:16px 18px;font-size:16px;font-weight:700;text-align:center;text-decoration:none}
+button{border:0;background:#20201e;color:white;cursor:pointer}
+a.btn{margin-top:12px;background:#ece7dd;color:#20201e}
+#status{min-height:24px;padding-top:9px;text-align:center;color:#52705a;font-size:13px}
+.note{margin:18px 0 0;text-align:center;color:#999186;font-size:12px;line-height:1.6}
+#manual{display:none;margin-top:14px}
+textarea{width:100%;height:130px;border:1px solid #d8d1c5;border-radius:12px;padding:12px;font-size:12px}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="card">
+<div class="kicker">PHOTO × PAPER</div>
+<h1>制作你的专属图片</h1>
+<p class="desc">上传一张照片，制作「原图 × 极简纸感手绘」9:16 上下对照图。</p>
+
+<div class="steps">
+<div class="step"><span class="n">1</span><span>点击按钮，一键复制完整制作指令</span></div>
+<div class="step"><span class="n">2</span><span>打开豆包，上传你的原始照片</span></div>
+<div class="step"><span class="n">3</span><span>粘贴制作指令并发送</span></div>
+</div>
+
+<button id="copyBtn" type="button">一键复制制作指令</button>
+<div id="status"></div>
+<a id="doubaoBtn" class="btn" href="https://www.doubao.com/chat/" target="_blank" rel="noopener noreferrer">打开豆包制作</a>
+
+<div id="manual"><textarea id="promptBox" readonly></textarea></div>
+<p class="note">页面不会上传或保存你的照片。</p>
+</section>
+</main>
+
+<script>
+const PROMPT = "你是一名擅长**极简插画、纸张媒介、丙烯色块绘画与视觉提炼**的封面插画师。 请根据我提供的**照片或主题**，创作一张**极简纸感手绘封面**。 你的任务不是写实复刻照片，也不是把照片简单变成线稿，而是先识别画面中最有辨识度的主体、轮廓、动作、空间关系与视觉特征，再进行**高度提炼与删减**，仅保留最关键的视觉信息，用**简洁线条 + 明显色块**重新表达。 --- ## 整体风格 整体风格应为： **粗糙白纸 + 极简手绘线条 + 明显丙烯色块 + 大量留白** 画面必须带有清晰可见的**纸张纹理**，像画在一张略粗糙的白色纸面上。 同时，主体的上色要有一种： **小幅丙烯插画 / 手工平涂 / 稍带颗粒感的色块绘画** 的感觉。 不是彩铅。 不是蜡笔。 不是纯线稿勾勒。 不是只有一点点颜色轻蹭上去。 而是要有**明确、完整、醒目的色块**，让视觉中心更成立。 --- ## 主体处理 根据照片提炼主体最有辨识度的部分。 不要完整照搬所有细节。 复杂场景必须大胆简化。 建筑只保留最典型的： * 外轮廓 * 主要结构关系 * 关键窗户或门洞 * 最具识别度的造型特征 人物只保留： * 姿态 * 动作 * 发型 * 衣服轮廓 * 少量必要特征 物体只保留： * 主要外形 * 功能结构 * 最重要的视觉特征 宁可少画，不要多画。 不要追求“缩小版写实复刻”。 要像从真实画面中提炼出一个**最值得被记住的符号化瞬间**。 --- ## 线条要求 线条要细、轻、简洁，带一点手绘的不稳定感。 可以有轻微断续、歪斜、不工整感，但不要太乱。 不要工程制图感。 不要过度精细。 不要把所有边都封闭得特别完整。 线条的作用是： **辅助结构识别**， 而不是成为画面的主要视觉主体。 真正的重点应该是： **简洁轮廓 + 鲜明色块。** --- ## 上色方式 上色必须采用**明显的色块表达**。 色块应该具有以下特点： * 有清晰的形体归纳 * 看起来像手工涂绘的丙烯平涂 * 有适度覆盖感 * 有一定厚度感，但不能过度厚涂 * 能保留一点纸张颗粒和手工痕迹 * 不需要非常均匀，可以略带手绘的不平整边缘 重点是： **不是靠线条完成画面，而是靠少量但明确的色块建立主体。** 可以理解为： **线条负责“提示”，色块负责“成立”。** --- ## 色彩限制 整张画面最多使用 **4 种主色**。\n\n【新增版式要求】\n最终输出必须是一张 9:16 竖版图片。\n将用户上传的原始照片与按照以上提示词生成的新插画上下排列，二者篇幅严格为 1:1：\n上半部分占整张图高度的 50%，直接保留用户上传的原始照片；\n下半部分占整张图高度的 50%，按照以上提示词的原有风格生成对应插画。\n上半部分不要重新绘制、不要风格化，尽量保持原始照片本身。\n下半部分必须继续严格遵循以上原提示词的风格、线条、纸张纹理、丙烯平涂和鲜明色块要求，不得因为上下拼图而弱化颜色、减少色块覆盖或改变原有画风。\n上下两部分表现同一个场景和核心主体。\n不要添加文字、标题、水印、Logo、贴纸、相框、边框或其他装饰。\n最终只输出上下合成后的一张 9:16 图片。";
+
+function trackEvent(name, extra) {
+  try {
+    if (window.LA && typeof LA.track === "function") {
+      LA.track("event", Object.assign({event_name:name}, extra || {}));
+    }
+  } catch(e) {}
+}
+
+const btn=document.getElementById('copyBtn');
+const status=document.getElementById('status');
+const manual=document.getElementById('manual');
+const box=document.getElementById('promptBox');
+box.value=PROMPT;
+
+btn.addEventListener('click',async()=>{
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(PROMPT);
+    } else {
+      const t=document.createElement('textarea');
+      t.value=PROMPT;t.style.position='fixed';t.style.opacity='0';
+      document.body.appendChild(t);t.focus();t.select();
+      if(!document.execCommand('copy')) throw new Error();
+      t.remove();
+    }
+    status.textContent='✓ 已复制，现在上传照片到豆包即可';
+    btn.textContent='已复制 ✓';
+    trackEvent("复制制作指令", {button_id:"copyBtn"});
+  }catch(e){
+    manual.style.display='block';
+    box.focus();box.select();
+    status.textContent='自动复制受限，请长按下方文字复制';
+  }
+});
+
+document.getElementById('doubaoBtn').addEventListener('click',()=>{
+  trackEvent("打开豆包制作", {button_id:"doubaoBtn"});
+});
+</script>
+</body>
+</html>
